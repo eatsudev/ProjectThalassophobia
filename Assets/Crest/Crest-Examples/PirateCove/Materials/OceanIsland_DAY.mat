@@ -14,6 +14,7 @@ Material:
   m_ValidKeywords:
   - _APPLYNORMALMAPPING_ON
   - _CAUSTICS_ON
+  - _CLIPSURFACE_ON
   - _FLOW_ON
   - _FOAM3DLIGHTING_ON
   - _FOAM_ON
@@ -23,7 +24,6 @@ Material:
   - _SUBSURFACESHALLOWCOLOUR_ON
   - _TRANSPARENCY_ON
   - _UNDERWATER_ON
-  - _VARYSMOOTHNESSOVERDISTANCE_ON
   m_InvalidKeywords:
   - _COMPUTEDIRECTIONALLIGHT_ON
   - _DEBUGMULTIPLYBYLIGHT0COLOR_ON
@@ -111,7 +111,7 @@ Material:
     - _CausticsStrength: 10
     - _CausticsTextureAverage: 0.063
     - _CausticsTextureScale: 7.8
-    - _ClipSurface: 0
+    - _ClipSurface: 1
     - _ClipUnderTerrain: 0
     - _CompileShaderWithDebugInfo: 0
     - _ComputeDirectionalLight: 1
@@ -131,9 +131,9 @@ Material:
     - _FoamBubbleParallax: 0.268
     - _FoamScale: 6
     - _ForceUnderwater: 0
-    - _FresnelPower: 5
+    - _FresnelPower: 1.9
     - _Invert: 1
-    - _LightIntensityMultiplier: 10
+    - _LightIntensityMultiplier: 0
     - _MipBias: 0
     - _Moving: 0.17
     - _NormalsScale: 45
@@ -163,23 +163,23 @@ Material:
     - _Specular: 0.78
     - _StartLevel: 0.157
     - _StencilFunction: 0
-    - _SubSurfaceBase: 0
+    - _SubSurfaceBase: 0.31
     - _SubSurfaceCrestColour: 1
-    - _SubSurfaceDepthMax: 22.4
-    - _SubSurfaceDepthPower: 3.08
+    - _SubSurfaceDepthMax: 0.01
+    - _SubSurfaceDepthPower: 0.5
     - _SubSurfaceHeightLerp: 1
     - _SubSurfaceHeightMax: 57.9
     - _SubSurfaceHeightPower: 5.43
     - _SubSurfaceScattering: 1
     - _SubSurfaceShallowColour: 1
     - _SubSurfaceSun: 0
-    - _SubSurfaceSunFallOff: 16
+    - _SubSurfaceSunFallOff: 1
     - _TexelSize: 0.125
     - _TextureRes: 1024
     - _Transparency: 1
     - _Underwater: 1
     - _Update: 0.083
-    - _VarySmoothnessOverDistance: 1
+    - _VarySmoothnessOverDistance: 0
     - _WaveFoamBubblesCoverage: 1.78
     - _WaveFoamBubblesFeather: 0.32
     - _WaveFoamBubblesStart: 0.115
@@ -195,9 +195,9 @@ Material:
     - _WaveFoamStrength: 1
     m_Colors:
     - _DepthFogDensity: {r: 0.45, g: 0.15, b: 0.175, a: 1}
-    - _Diffuse: {r: 0, g: 0.623556, b: 0.7264151, a: 1}
-    - _DiffuseGrazing: {r: 0.10849059, g: 0.6003579, b: 1, a: 1}
-    - _DiffuseShadow: {r: 0, g: 0.06821683, b: 0.2264151, a: 1}
+    - _Diffuse: {r: 0.06666664, g: 0.56122947, b: 0.8392157, a: 1}
+    - _DiffuseGrazing: {r: 0.14618193, g: 0.5474038, b: 0.6886792, a: 1}
+    - _DiffuseShadow: {r: 0.0020024967, g: 0.12584627, b: 0.4245283, a: 1}
     - _FoamBubbleColor: {r: 0, g: 0.67798746, b: 0.7264151, a: 1}
     - _FoamWhiteColor: {r: 1, g: 1, b: 1, a: 1}
     - _SkyAwayFromSun: {r: 0.28773582, g: 0.41129196, b: 1, a: 1}
