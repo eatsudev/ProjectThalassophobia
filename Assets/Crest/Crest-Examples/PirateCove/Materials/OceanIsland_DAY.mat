@@ -24,6 +24,7 @@ Material:
   - _SUBSURFACESHALLOWCOLOUR_ON
   - _TRANSPARENCY_ON
   - _UNDERWATER_ON
+  - _VARYSMOOTHNESSOVERDISTANCE_ON
   m_InvalidKeywords:
   - _COMPUTEDIRECTIONALLIGHT_ON
   - _DEBUGMULTIPLYBYLIGHT0COLOR_ON
@@ -179,7 +180,7 @@ Material:
     - _Transparency: 1
     - _Underwater: 1
     - _Update: 0.083
-    - _VarySmoothnessOverDistance: 0
+    - _VarySmoothnessOverDistance: 1
     - _WaveFoamBubblesCoverage: 1.78
     - _WaveFoamBubblesFeather: 0.32
     - _WaveFoamBubblesStart: 0.115
