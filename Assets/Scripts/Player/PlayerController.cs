@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 
     public static bool inWater;
     public static bool isSwimming;
+    public LayerMask waterMask;
 
     [Header("Player Rotation")]
     public float sensitivity = 1;
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        SwimmingOrFloating();
         Move();
     }
 
@@ -80,5 +82,29 @@ public class PlayerController : MonoBehaviour
     private void SwitchMovement()
     {
         inWater = !inWater;
+    }
+
+    private void SwimmingOrFloating()
+    {
+        bool swimCheck = false;
+
+        if (inWater)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(new Vector3(t.position.x, t.position.y + 0.5f, t.position.z), Vector3.down, out hit, Mathf.Infinity, waterMask))
+            {
+                if(hit.distance < 0.1f)
+                {
+                    swimCheck = true;
+                }
+            }
+            else
+            {
+                swimCheck = false;
+            }
+        }
+        
+        isSwimming = swimCheck;
+        Debug.Log("isSwimming = " + isSwimming);
     }
 }
