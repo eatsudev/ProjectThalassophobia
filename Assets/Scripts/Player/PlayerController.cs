@@ -25,8 +25,11 @@ public class PlayerController : MonoBehaviour
     private float moveY;
     private float moveZ;
 
+    Rigidbody rb;
+
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         t = this.transform;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -75,13 +78,32 @@ public class PlayerController : MonoBehaviour
         moveY = Input.GetAxis("Vertical");
         moveZ = Input.GetAxis("Forward");
 
-        t.Translate(new Vector3(moveX, 0, moveZ) * Time.deltaTime * speed);
-        t.Translate(new Vector3(0, moveY, 0) * Time.deltaTime * speed, Space.World);
+        if (!inWater)
+        {
+            t.Translate(new Quaternion(0, t.rotation.y, 0, t.rotation.w) * new Vector3(moveX, 0, moveZ) * Time.deltaTime * speed, Space.World);
+        }
+        else
+        {
+            if(!isSwimming)
+            {
+                moveY = Mathf.Min(moveY, 0);
+                Vector3 clampedDirection = t.TransformDirection(new Vector3(moveX, moveY, moveZ));
+                clampedDirection = new Vector3(clampedDirection.x, Mathf.Min(clampedDirection.y, 0), clampedDirection.z);
+                t.Translate(clampedDirection * Time.deltaTime * speed, Space.World);
+            }
+            else
+            {
+                t.Translate(new Vector3(moveX, 0, moveZ) * Time.deltaTime * speed);
+                t.Translate(new Vector3(0, moveY, 0) * Time.deltaTime * speed, Space.World);
+            }
+        }
+        
     }
 
     private void SwitchMovement()
     {
         inWater = !inWater;
+        rb.useGravity = !rb.useGravity;
     }
 
     private void SwimmingOrFloating()

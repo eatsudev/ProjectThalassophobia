@@ -278,8 +278,8 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 72
-  m_CollisionDetection: 1
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &306960106
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,10 +532,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1935528129688418602, guid: ddf71bfb72c45407fb8cea42d3aaeac4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2588902590926931974, guid: ddf71bfb72c45407fb8cea42d3aaeac4,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889430476017852415, guid: ddf71bfb72c45407fb8cea42d3aaeac4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5676109641073146700, guid: ddf71bfb72c45407fb8cea42d3aaeac4,
         type: 3}
@@ -594,6 +604,11 @@ PrefabInstance:
       objectReference: {fileID: 2088405244}
     - target: {fileID: 8066748594655780890, guid: ddf71bfb72c45407fb8cea42d3aaeac4,
         type: 3}
+      propertyPath: _gravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066748594655780890, guid: ddf71bfb72c45407fb8cea42d3aaeac4,
+        type: 3}
       propertyPath: _lodCount
       value: 7
       objectReference: {fileID: 0}
@@ -616,6 +631,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _globalWindSpeed
       value: 98.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066748594655780890, guid: ddf71bfb72c45407fb8cea42d3aaeac4,
+        type: 3}
+      propertyPath: _overrideGravity
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8066748594655780890, guid: ddf71bfb72c45407fb8cea42d3aaeac4,
         type: 3}
@@ -787,8 +807,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 200, y: 20, z: 200}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 929.84766, y: 105.14, z: 942.7961}
+  m_Center: {x: -29.36316, y: 0, z: 271.4648}
 --- !u!4 &1190014368
 Transform:
   m_ObjectHideFlags: 0
@@ -798,7 +818,7 @@ Transform:
   m_GameObject: {fileID: 1190014366}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 72.18305, y: -5.3, z: 30.33}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
