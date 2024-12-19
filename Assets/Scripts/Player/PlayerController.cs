@@ -21,9 +21,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player Movement")]
     public float speed = 1f;
-    private float moveX;
-    private float moveY;
-    private float moveZ;
+    float moveX;
+    float moveY;
+    float moveZ;
 
     Rigidbody rb;
 
@@ -44,12 +44,20 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        SwitchMovement();
+        if (((1 << other.gameObject.layer) & waterMask) != 0)
+        {
+            inWater = true;
+            rb.useGravity = false; 
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        SwitchMovement();
+        if (((1 << other.gameObject.layer) & waterMask) != 0)
+        {
+            inWater = false;
+            rb.useGravity = true;
+        }
     }
 
     void Update()
@@ -72,61 +80,52 @@ public class PlayerController : MonoBehaviour
         t.localRotation = Quaternion.Euler(-rotY, rotX, 0);
     }
 
-    private void Move()
+    void Move()
     {
         moveX = Input.GetAxis("Horizontal");
-        moveY = Input.GetAxis("Vertical");
+        //moveY = Input.GetAxis("Vertical");
         moveZ = Input.GetAxis("Forward");
 
         if (!inWater)
         {
-            t.Translate(new Quaternion(0, t.rotation.y, 0, t.rotation.w) * new Vector3(moveX, 0, moveZ) * Time.deltaTime * speed, Space.World);
+            Vector3 moveDirection = new Vector3(moveX, 0, moveZ);
+            t.Translate(moveDirection * Time.deltaTime * speed, Space.Self);
         }
         else
         {
-            if(!isSwimming)
-            {
-                moveY = Mathf.Min(moveY, 0);
-                Vector3 clampedDirection = t.TransformDirection(new Vector3(moveX, moveY, moveZ));
-                clampedDirection = new Vector3(clampedDirection.x, Mathf.Min(clampedDirection.y, 0), clampedDirection.z);
-                t.Translate(clampedDirection * Time.deltaTime * speed, Space.World);
-            }
-            else
-            {
-                t.Translate(new Vector3(moveX, 0, moveZ) * Time.deltaTime * speed);
-                t.Translate(new Vector3(0, moveY, 0) * Time.deltaTime * speed, Space.World);
-            }
+            moveY = Input.GetAxis("Vertical");
+
+            Vector3 swimDirection = new Vector3(moveX, moveY, moveZ);
+            t.Translate(swimDirection * Time.deltaTime * speed, Space.Self);
         }
-        
+
     }
 
-    private void SwitchMovement()
+    void SwitchMovement()
     {
         inWater = !inWater;
         rb.useGravity = !rb.useGravity;
     }
 
-    private void SwimmingOrFloating()
+    void SwimmingOrFloating()
     {
-        bool swimCheck = false;
-
         if (inWater)
         {
             RaycastHit hit;
-            if (Physics.Raycast(new Vector3(t.position.x, t.position.y + 0.5f, t.position.z), Vector3.down, out hit, Mathf.Infinity, waterMask))
+            if (Physics.Raycast(t.position, Vector3.down, out hit, Mathf.Infinity, waterMask))
             {
-                if(hit.distance < 0.1f)
-                {
-                    swimCheck = true;
-                }
+                isSwimming = hit.distance > 0.1f;
             }
             else
             {
-                swimCheck = false;
+                isSwimming = true;
             }
         }
-        
-        isSwimming = swimCheck;
+        else
+        {
+            isSwimming = false;
+        }
+
         Debug.Log("isSwimming = " + isSwimming);
     }
 }
