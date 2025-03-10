@@ -998,7 +998,7 @@ MonoBehaviour:
   _mode: 0
   _filterOceanData: 13
   _meniscus: 1
-  _depthFogDensityFactor: 1
+  _depthFogDensityFactor: 0.01
   _volumeGeometry: {fileID: 0}
   _invertCulling: 0
   _enableShaderAPI: 0

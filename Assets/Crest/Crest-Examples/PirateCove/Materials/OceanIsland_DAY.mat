@@ -19,6 +19,7 @@ Material:
   - _FOAM3DLIGHTING_ON
   - _FOAM_ON
   - _PLANARREFLECTIONS_ON
+  - _PROJECTION_PERSPECTIVE
   - _SHADOWS_ON
   - _SUBSURFACESCATTERING_ON
   - _SUBSURFACESHALLOWCOLOUR_ON
@@ -28,7 +29,6 @@ Material:
   m_InvalidKeywords:
   - _COMPUTEDIRECTIONALLIGHT_ON
   - _DEBUGMULTIPLYBYLIGHT0COLOR_ON
-  - _PROJECTION_BOTH
   - _SUBSURFACEHEIGHTLERP_ON
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
@@ -108,10 +108,10 @@ Material:
     - _CausticsDepthOfField: 2
     - _CausticsDistortionScale: 20.5
     - _CausticsDistortionStrength: 0.0361
-    - _CausticsFocalDepth: 5.5
+    - _CausticsFocalDepth: 119
     - _CausticsStrength: 10
     - _CausticsTextureAverage: 0.063
-    - _CausticsTextureScale: 7.8
+    - _CausticsTextureScale: 25
     - _ClipSurface: 1
     - _ClipUnderTerrain: 0
     - _CompileShaderWithDebugInfo: 0
@@ -147,7 +147,7 @@ Material:
     - _PlanarReflectionNormalsStrength: 31.12
     - _PlanarReflections: 1
     - _ProceduralSky: 0
-    - _Projection: 0
+    - _Projection: 1
     - _ReflectionBlur: 1.05
     - _RefractAmt: 0
     - _RefractionStrength: 1.36

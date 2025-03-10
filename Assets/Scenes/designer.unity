@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.867, g: 0.9962, b: 1, a: 1}
   m_FogMode: 2
   m_FogDensity: 0.00004
@@ -227,11 +227,12 @@ Transform:
   m_GameObject: {fileID: 277498207}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 700, y: 131.53, z: 110.7}
+  m_LocalPosition: {x: 3421.59, y: 9.56, z: 1986.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2088405238}
+  - {fileID: 1470015912}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &277498212
@@ -252,7 +253,7 @@ MonoBehaviour:
   sensitivity: 1
   rotMin: -50
   rotMax: 50
-  speed: 10
+  speed: 100
 --- !u!54 &277498213
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -358,6 +359,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: C.Arche 5
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53360bf986248194e9c4358c36f29f68,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -441,6 +447,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: C.Arche 3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f1716c0789eec5547a466d9370e16f74,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -523,6 +534,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: C.Arche 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 62da4211d0638f146ac11ae4dc7ae0df,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -674,6 +690,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: C.Arche 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eb6d4d173b40dc242834fd5d000a90ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -861,6 +882,11 @@ PrefabInstance:
       propertyPath: _material
       value: 
       objectReference: {fileID: 2100000, guid: a6225161aeed1b4498458e238f08ce11, type: 2}
+    - target: {fileID: 8066748594655780890, guid: ddf71bfb72c45407fb8cea42d3aaeac4,
+        type: 3}
+      propertyPath: _viewpoint
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8066748594655780890, guid: ddf71bfb72c45407fb8cea42d3aaeac4,
         type: 3}
       propertyPath: _primaryLight
@@ -1068,6 +1094,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1470015911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1470015912}
+  m_Layer: 0
+  m_Name: Viewpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1470015912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470015911}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 277498211}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1593365705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,7 +1278,7 @@ Terrain:
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
+  m_DetailObjectDistance: 1000
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -1256,7 +1313,7 @@ Transform:
   m_GameObject: {fileID: 1680212673}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 177, z: 0}
+  m_LocalPosition: {x: 0, y: -1006, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1340,6 +1397,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: C.Arche 2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2f8c3cef9d9d02648b6c0f0a7e89868b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1395,7 +1457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _version: 0
-  _weight: 1
+  _weight: 0
   _volumeProfile: {fileID: 0}
 --- !u!114 &2088405240
 MonoBehaviour:
@@ -1413,7 +1475,7 @@ MonoBehaviour:
   _mode: 0
   _filterOceanData: 13
   _meniscus: 1
-  _depthFogDensityFactor: 1
+  _depthFogDensityFactor: 0.01
   _volumeGeometry: {fileID: 0}
   _invertCulling: 0
   _enableShaderAPI: 0
@@ -1421,7 +1483,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _copyOceanMaterialParamsEachFrame: 1
-  _farPlaneMultiplier: 0.68
+  _farPlaneMultiplier: 1
   _debug:
     _viewOceanMask: 0
     _disableOceanMask: 0
