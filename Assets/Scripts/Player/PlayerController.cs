@@ -83,7 +83,6 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         moveX = Input.GetAxis("Horizontal");
-        //moveY = Input.GetAxis("Vertical");
         moveZ = Input.GetAxis("Forward");
 
         if (!inWater)
