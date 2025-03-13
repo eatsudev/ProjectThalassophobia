@@ -38,25 +38,14 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        SwimmingOrFloating();
         Move();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (((1 << other.gameObject.layer) & waterMask) != 0)
+        if(collision.gameObject.tag == "Ground")
         {
-            inWater = true;
-            rb.useGravity = false; 
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (((1 << other.gameObject.layer) & waterMask) != 0)
-        {
-            inWater = false;
-            rb.useGravity = true;
+            Debug.Log("Collided with terrain");
         }
     }
 
@@ -100,31 +89,5 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void SwitchMovement()
-    {
-        inWater = !inWater;
-        rb.useGravity = !rb.useGravity;
-    }
-
-    void SwimmingOrFloating()
-    {
-        if (inWater)
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(t.position, Vector3.down, out hit, Mathf.Infinity, waterMask))
-            {
-                isSwimming = hit.distance > 0.1f;
-            }
-            else
-            {
-                isSwimming = true;
-            }
-        }
-        else
-        {
-            isSwimming = false;
-        }
-
-        Debug.Log("isSwimming = " + isSwimming);
-    }
+    
 }
