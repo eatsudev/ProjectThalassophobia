@@ -16,8 +16,8 @@ public class PlayerController : MonoBehaviour
     private float rotX;
     private float rotY;
 
-    public float rotMin;
-    public float rotMax;
+    public float rotMin = -50;
+    public float rotMax = 50;
 
     [Header("Player Movement")]
     public float speed = 1f;
@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        TerrainCollide();
         Move();
     }
 
@@ -71,8 +72,10 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
+
         moveX = Input.GetAxis("Horizontal");
         moveZ = Input.GetAxis("Forward");
+
 
         if (!inWater)
         {
@@ -87,7 +90,22 @@ public class PlayerController : MonoBehaviour
             t.Translate(swimDirection * Time.deltaTime * speed, Space.Self);
         }
 
+
     }
 
+
+    private void TerrainCollide()
+    {
+        RaycastHit hit;
+        float playerHeight = 1.0f;
+
+        if(Physics.Raycast(transform.position, Vector3.down, out hit, playerHeight + 0.1f))
+        {
+            if (hit.collider.CompareTag("Ground"))
+            {
+                transform.position = hit.point + Vector3.up * playerHeight;
+            }
+        }
+    }
     
 }
