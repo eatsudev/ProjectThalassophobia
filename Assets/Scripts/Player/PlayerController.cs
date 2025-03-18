@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public static bool inWater;
     public static bool isSwimming;
     public LayerMask waterMask;
+    private float waterSurfaceY;
+    public float playerHeight = 1.0f;
 
     [Header("Player Rotation")]
     public float sensitivity = 1;
@@ -50,10 +52,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+
     void Update()
     {
         LookAround();
-
+        WaterMovement();
         if (Input.GetKey(KeyCode.Escape))
         {
             Cursor.lockState = CursorLockMode.None;
@@ -97,7 +101,7 @@ public class PlayerController : MonoBehaviour
     private void TerrainCollide()
     {
         RaycastHit hit;
-        float playerHeight = 1.0f;
+        
 
         if(Physics.Raycast(transform.position, Vector3.down, out hit, playerHeight + 0.1f))
         {
@@ -105,6 +109,20 @@ public class PlayerController : MonoBehaviour
             {
                 transform.position = hit.point + Vector3.up * playerHeight;
             }
+        }
+    }
+
+    private void WaterMovement()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.up, out hit, Mathf.Infinity, waterMask))
+        {
+            waterSurfaceY = hit.point.y;
+        }
+
+        if (transform.position.y >= waterSurfaceY)
+        {
+            transform.position = new Vector3(transform.position.x, waterSurfaceY, transform.position.z);
         }
     }
     
