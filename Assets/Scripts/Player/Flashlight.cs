@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class Flashlight : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Light flashlight;
+    private bool isOn = false;
+
     void Start()
     {
-        
+        flashlight.enabled = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            ToggleFlashlight();
+        }
     }
+
+    private void ToggleFlashlight()
+    {
+        isOn = !isOn;
+        flashlight.enabled = isOn;
+    }
+    
 }

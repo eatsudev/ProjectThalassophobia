@@ -885,6 +885,7 @@ GameObject:
   - component: {fileID: 235705894}
   - component: {fileID: 235705896}
   - component: {fileID: 235705897}
+  - component: {fileID: 235705898}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1046,6 +1047,19 @@ MonoBehaviour:
   depletionInterval: 10
   hasOxygenTank: 0
   oxygenBar: {fileID: 101426047}
+--- !u!114 &235705898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235705888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c6edf86b100c694cbb4801c819c4997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashlight: {fileID: 1817377816}
 --- !u!1 &252046749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,7 +1077,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &252046750
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -8769,8 +8783,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1000
-  m_Range: 274.09033
+  m_Intensity: 10000
+  m_Range: 200
   m_SpotAngle: 102.32484
   m_InnerSpotAngle: 0
   m_CookieSize: 10
