@@ -1,24 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
+using UnityEngine.UI;
 
 public class ItemPickup : MonoBehaviour
 {
     public float pickupRange = 3f;
-    public LayerMask itemLayer = 1 << 0;
+    public LayerMask itemLayer;
     public Transform cameraTransform;
-    public Inventory inventory;
+    public Transform itemHolder;
+    public Text itemNameUI;
+
+    private List<GameObject> inventory = new List<GameObject>();
+    private int maxItems = 5;
+    private int currentItemIndex = -1;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        ShowItemNameUI();
+
+        if (Input.GetKeyDown(KeyCode.E)) 
         {
             TryPickupItem();
         }
+
+        SwitchItems();
     }
 
-    void TryPickupItem()
+    void ShowItemNameUI()
     {
         RaycastHit hit;
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, pickupRange, itemLayer))
@@ -26,9 +35,58 @@ public class ItemPickup : MonoBehaviour
             Item item = hit.collider.GetComponent<Item>();
             if (item != null)
             {
-                inventory.AddItem(item.itemName);
-                Destroy(hit.collider.gameObject);
+                itemNameUI.text = item.itemName;
+                itemNameUI.enabled = true;
+                return;
             }
+        }
+        itemNameUI.enabled = false;
+    }
+
+    void TryPickupItem()
+    {
+        if (inventory.Count >= maxItems) return; 
+
+        RaycastHit hit;
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, pickupRange, itemLayer))
+        {
+            Item item = hit.collider.GetComponent<Item>();
+            if (item != null)
+            {
+                GameObject newItem = Instantiate(hit.collider.gameObject, itemHolder);
+                newItem.transform.localPosition = Vector3.zero; 
+                newItem.transform.localRotation = Quaternion.identity; 
+                newItem.SetActive(false); 
+                inventory.Add(newItem);
+
+                Destroy(hit.collider.gameObject); 
+                if (inventory.Count == 1)
+                {
+                    currentItemIndex = 0;
+                    inventory[0].SetActive(true);
+                }
+            }
+        }
+    }
+
+    void SwitchItems()
+    {
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+            {
+                EquipItem(i);
+            }
+        }
+    }
+
+    void EquipItem(int index)
+    {
+        if (index < inventory.Count && currentItemIndex != index)
+        {
+            if (currentItemIndex >= 0) inventory[currentItemIndex].SetActive(false);
+            currentItemIndex = index;
+            inventory[currentItemIndex].SetActive(true);
         }
     }
 }
