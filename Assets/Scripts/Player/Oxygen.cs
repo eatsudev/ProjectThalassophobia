@@ -47,7 +47,7 @@ public class Oxygen : MonoBehaviour
     private void ReloadOxygen()
     {
         currentOxygen = maxOxygen;
-        hasOxygenTank = false; 
+        hasOxygenTank = false;
         Debug.Log("Oxygen Refilled");
         UpdateOxygenUI();
     }

@@ -14,6 +14,7 @@ public class ItemPickup : MonoBehaviour
     private List<GameObject> inventory = new List<GameObject>();
     private int maxItems = 5;
     private int currentItemIndex = -1;
+    public float itemSize = 1f;
 
     void Update()
     {
@@ -54,9 +55,9 @@ public class ItemPickup : MonoBehaviour
             if (item != null)
             {
                 GameObject newItem = Instantiate(hit.collider.gameObject, itemHolder);
-                newItem.transform.localPosition = itemHolder.position;
-                newItem.transform.localRotation = itemHolder.rotation;
-                newItem.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                newItem.transform.position = itemHolder.position;
+                newItem.transform.rotation = itemHolder.rotation;
+                newItem.transform.localScale = Vector3.one * itemSize;
                 newItem.SetActive(false); 
                 inventory.Add(newItem);
 

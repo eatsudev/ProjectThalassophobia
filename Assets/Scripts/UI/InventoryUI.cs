@@ -10,6 +10,6 @@ public class InventoryUI : MonoBehaviour
 
     void Update()
     {
-        inventoryText.text = "Item: " + string.Join(", ", inventory.inventory);
+        inventoryText.text = "Item: " + string.Join("", inventory.inventory);
     }
 }
