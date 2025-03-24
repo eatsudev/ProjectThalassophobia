@@ -54,8 +54,9 @@ public class ItemPickup : MonoBehaviour
             if (item != null)
             {
                 GameObject newItem = Instantiate(hit.collider.gameObject, itemHolder);
-                newItem.transform.localPosition = Vector3.zero; 
-                newItem.transform.localRotation = Quaternion.identity; 
+                newItem.transform.localPosition = itemHolder.position;
+                newItem.transform.localRotation = itemHolder.rotation;
+                newItem.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 newItem.SetActive(false); 
                 inventory.Add(newItem);
 
