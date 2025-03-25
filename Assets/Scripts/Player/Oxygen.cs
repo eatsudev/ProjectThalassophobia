@@ -10,16 +10,15 @@ public class Oxygen : MonoBehaviour
     public float oxygenDepletionRate = 1f; 
     public float depletionInterval = 10f;
 
-    public bool hasOxygenTank = false;  
-
     public Slider oxygenBar; 
     public Inventory inventory;
-    public string oxygenTankItemName = "OxygenTank";
 
     private void Start()
     {
+        inventory = GetComponent<Inventory>();
         currentOxygen = maxOxygen;
         StartCoroutine(DecreaseOxygen());
+        
     }
 
     private IEnumerator DecreaseOxygen()
@@ -40,24 +39,31 @@ public class Oxygen : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && hasOxygenTank)
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            ReloadOxygen();
+            TryReloadOxygen();
         }
     }
 
-    private void ReloadOxygen()
+    private void TryReloadOxygen()
     {
-        currentOxygen = maxOxygen;
-        hasOxygenTank = false;
-        inventory.RemoveItem(oxygenTankItemName);
-        Debug.Log("Oxygen Refilled");
-        UpdateOxygenUI();
-    }
+        if (inventory != null)
+        {
+            string equippedItem = inventory.GetCurrentItemName();
+            Debug.Log("Currently equipped item: " + equippedItem);
 
-    private bool IsHoldingOxygenTank()
-    {
-        return inventory.GetCurrentItemName() == oxygenTankItemName;
+            if (equippedItem == "OxygenTank")
+            {
+                currentOxygen = maxOxygen;
+                inventory.RemoveItem("OxygenTank");
+                Debug.Log("Oxygen Refilled!");
+                UpdateOxygenUI();
+            }
+            else
+            {
+                Debug.Log("No Oxygen Tank equipped!");
+            }
+        }
     }
 
     private void UpdateOxygenUI()

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class OxygenTank : MonoBehaviour
 {
-    public string itemName = "OxygenTank";
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -12,14 +11,16 @@ public class OxygenTank : MonoBehaviour
             Inventory inventory = other.GetComponent<Inventory>();
             if(inventory != null)
             {
-                if (inventory.AddItem(itemName))
+                bool added = inventory.AddItem("OxygenTank");
+
+                if (added)
                 {
-                    Debug.Log("picked up oxygen tank");
+                    Debug.Log("Picked up Oxygen Tank!");
                     Destroy(gameObject);
                 }
                 else
                 {
-                    Debug.Log("inventory full");
+                    Debug.Log("Inventory Full! Cannot pick up Oxygen Tank.");
                 }
             }
         }
