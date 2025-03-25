@@ -159,4 +159,28 @@ public class ItemPickup : MonoBehaviour
         }
         return false;
     }
+
+    public GameObject GetHeldItem()
+    {
+        if (inventory.Count > 0 && currentItemIndex >= 0 && currentItemIndex < inventory.Count)
+        {
+            Debug.Log("Currently holding: " + inventory[currentItemIndex].name);
+            return inventory[currentItemIndex];
+        }
+
+        Debug.Log("No item is being held.");
+        return null;
+    }
+
+    public void RemoveItem(GameObject item)
+    {
+        if (inventory.Contains(item))
+        {
+            inventory.Remove(item);
+            Destroy(item);
+            Debug.Log(item.name + " has been removed from inventory.");
+
+            EquipNextAvailableItem();
+        }
+    }
 }

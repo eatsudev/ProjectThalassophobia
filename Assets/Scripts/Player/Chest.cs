@@ -4,28 +4,52 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
-    public string requiredKeycardID; 
+    public string requiredKeycardID;
+    private Animator anim;
+    private bool isOpened = false;
 
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        if (other.CompareTag("Player"))
+        anim = GetComponent<Animator>();
+    }
+    public void TryOpen(GameObject heldItem)
+    {
+        if (isOpened)
         {
-            ItemPickup itemPickup = other.GetComponent<ItemPickup>();
-            if (itemPickup != null && itemPickup.HasKeycard(requiredKeycardID))
+            Debug.Log("Chest is already opened.");
+            return;
+        }
+
+        if (heldItem != null)
+        {
+            Debug.Log("Held Item Name: " + heldItem.name); 
+
+            if (heldItem.name == requiredKeycardID)
             {
+                Debug.Log("Chest opened with: " + heldItem.name);
                 OpenChest();
+
+                ItemPickup itemPickup = FindObjectOfType<ItemPickup>();
+                if (itemPickup != null)
+                {
+                    itemPickup.RemoveItem(heldItem);
+                }
             }
             else
             {
-                Debug.Log("Chest is locked! Requires Keycard " + requiredKeycardID);
+                Debug.Log("Incorrect keycard: " + heldItem.name + " does not match " + requiredKeycardID);
             }
+        }
+        else
+        {
+            Debug.Log("No keycard held.");
         }
     }
 
     private void OpenChest()
     {
-        Debug.Log("Chest " + requiredKeycardID + " opened!");
+        Debug.Log("Chest opened!");
         // Add animation
-        
+        anim.SetBool("isOpen", true);
     }
 }
