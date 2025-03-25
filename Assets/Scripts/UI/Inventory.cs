@@ -1,22 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
-    public List<string> inventory = new List<string>();
-    public int maxItems = 5;
+    public List<string> items = new List<string>();
+    public int maxInventorySize = 5;
+    public int currentItemIndex = 0;
 
-    public void AddItem(string itemName)
+    public bool AddItem(string itemName)
     {
-        if (inventory.Count < maxItems)
+        if(items.Count < maxInventorySize)
         {
-            inventory.Add(itemName);
-            Debug.Log(itemName + " added to inventory!");
+            items.Add(itemName);
+            return true;
+        } 
+        return false;
+    }
+
+    public string GetCurrentItemName()
+    {
+        if (items.Count > 0)
+        {
+            return items[currentItemIndex];
         }
-        else
+        return "";
+    }
+
+    public void RemoveItem(string itemName)
+    {
+        if (items.Contains(itemName))
         {
-            Debug.Log("Inventory Full!");
+            items.Remove(itemName);
+            currentItemIndex = Mathf.Clamp(currentItemIndex, 0, items.Count - 1);
+        }
+    }
+
+    public void SwitchItem(int index)
+    {
+        if(index >= 0 && index < items.Count)
+        {
+            currentItemIndex = index;
         }
     }
 }
