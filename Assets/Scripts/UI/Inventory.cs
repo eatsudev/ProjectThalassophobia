@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
@@ -42,14 +43,5 @@ public class Inventory : MonoBehaviour
         {
             currentItemIndex = index;
         }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchItem(0);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchItem(1);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchItem(2);
-        if (Input.GetKeyDown(KeyCode.Alpha4)) SwitchItem(3);
-        if (Input.GetKeyDown(KeyCode.Alpha5)) SwitchItem(4);
     }
 }
