@@ -16,6 +16,8 @@ public class ItemPickup : MonoBehaviour
     public int currentItemIndex = -1;
     public float itemSize = 1f;
 
+    public List<Keycard> keycards = new List<Keycard>();
+
     void Update()
     {
         ShowItemNameUI();
@@ -46,7 +48,7 @@ public class ItemPickup : MonoBehaviour
 
     void TryPickupItem()
     {
-        if (inventory.Count >= maxItems) return; 
+        if (inventory.Count >= maxItems && !inventory.Contains(null)) return; 
 
         RaycastHit hit;
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, pickupRange, itemLayer))
@@ -54,18 +56,33 @@ public class ItemPickup : MonoBehaviour
             Item item = hit.collider.GetComponent<Item>();
             if (item != null)
             {
+                int emptySlot = inventory.IndexOf(null);
+                if (emptySlot == -1) 
+                {
+                    if (inventory.Count >= maxItems) return; 
+                    emptySlot = inventory.Count;
+                }
+
                 GameObject newItem = Instantiate(hit.collider.gameObject, itemHolder);
                 newItem.transform.position = itemHolder.position;
                 newItem.transform.rotation = itemHolder.rotation;
                 newItem.transform.localScale = Vector3.one * itemSize;
-                newItem.SetActive(false); 
-                inventory.Add(newItem);
+                newItem.SetActive(false);
 
-                Destroy(hit.collider.gameObject); 
-                if (inventory.Count == 1)
+                if (emptySlot < inventory.Count)
                 {
-                    currentItemIndex = 0;
-                    inventory[0].SetActive(true);
+                    inventory[emptySlot] = newItem;
+                }
+                else
+                {
+                    inventory.Add(newItem);
+                }
+
+                Destroy(hit.collider.gameObject);
+
+                if (currentItemIndex == -1 || inventory[currentItemIndex] == null)
+                {
+                    EquipNextAvailableItem();
                 }
             }
         }
@@ -77,18 +94,69 @@ public class ItemPickup : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1 + i))
             {
-                EquipItem(i);
+                if (inventory[i] != null)
+                {
+                    EquipItem(i);
+                }
+                else
+                {
+                    Debug.LogWarning("Attempted to equip an empty slot!");
+                }
             }
         }
     }
 
     void EquipItem(int index)
     {
-        if (index < inventory.Count && currentItemIndex != index)
+        if (index < 0 || index >= inventory.Count)
         {
-            if (currentItemIndex >= 0) inventory[currentItemIndex].SetActive(false);
-            currentItemIndex = index;
-            inventory[currentItemIndex].SetActive(true);
+            Debug.LogWarning("Invalid index selected!");
+            return;
         }
+
+        if (inventory[index] == null)
+        {
+            Debug.LogWarning("No item in this slot!");
+            return;
+        }
+
+        if (currentItemIndex >= 0 && inventory[currentItemIndex] != null)
+        {
+            inventory[currentItemIndex].SetActive(false);
+        }
+
+        currentItemIndex = index;
+        inventory[currentItemIndex].SetActive(true);
+    }
+
+    public void EquipNextAvailableItem()
+    {
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            if (inventory[i] != null)
+            {
+                EquipItem(i);
+                return;
+            }
+        }
+
+        Debug.Log("No valid items left in inventory.");
+        currentItemIndex = -1;
+    }
+
+    public void PickupKeycard(Keycard keycard)
+    {
+        keycards.Add(keycard);
+        Debug.Log("Stored Keycard: " + keycard.keycardID);
+    }
+
+    public bool HasKeycard(string id)
+    {
+        foreach (Keycard keycard in keycards)
+        {
+            if (keycard.keycardID == id)
+                return true;
+        }
+        return false;
     }
 }

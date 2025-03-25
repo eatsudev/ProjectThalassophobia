@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Keycard : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string keycardID;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            ItemPickup itemPickup = other.GetComponent<ItemPickup>();
+            if (itemPickup != null)
+            {
+                itemPickup.PickupKeycard(this);
+                Debug.Log("Picked up Keycard: " + keycardID);
+                Destroy(gameObject);
+            }
+        }
     }
 }
