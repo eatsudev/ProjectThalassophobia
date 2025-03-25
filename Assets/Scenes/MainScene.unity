@@ -889,6 +889,7 @@ GameObject:
   - component: {fileID: 235705900}
   - component: {fileID: 235705899}
   - component: {fileID: 235705901}
+  - component: {fileID: 235705902}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -982,8 +983,8 @@ MonoBehaviour:
     m_Bits: 16
   playerHeight: 15
   sensitivity: 1
-  rotMin: -50
-  rotMax: 50
+  rotMin: -70
+  rotMax: 70
   speed: 100
 --- !u!54 &235705895
 Rigidbody:
@@ -1124,6 +1125,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   itemPickup: {fileID: 235705900}
+--- !u!114 &235705902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235705888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f3f5f0592459145a62693d13cd1f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryText: {fileID: 1517308126}
+  inventory: {fileID: 235705899}
 --- !u!1 &252046749
 GameObject:
   m_ObjectHideFlags: 0
@@ -8137,7 +8152,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1410989290}
-  - component: {fileID: 1410989289}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -8145,20 +8159,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1410989289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1410989288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4f3f5f0592459145a62693d13cd1f51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryText: {fileID: 1517308126}
-  inventory: {fileID: 235705899}
 --- !u!4 &1410989290
 Transform:
   m_ObjectHideFlags: 0
@@ -8420,12 +8420,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 36
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 3
+    m_MinSize: 2
     m_MaxSize: 60
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -8456,8 +8456,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 661.13, y: -472.31}
-  m_SizeDelta: {x: 597.75, y: 57.3858}
+  m_AnchoredPosition: {x: 0, y: 50.792}
+  m_SizeDelta: {x: 292.3323, y: 57.3858}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1523231158
 PrefabInstance:
@@ -9274,7 +9274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a4f5ecebe309d54cb8f6dd7dbfb0080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredKeycardID: Red
+  requiredKeycardID: Red(Clone)
 --- !u!65 &1873699092
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9294,8 +9294,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.7551336, y: 1.4903257, z: 2.049742}
-  m_Center: {x: -0.22009434, y: 0.70099497, z: -0.095272735}
+  m_Size: {x: 3.6521044, y: 1.3123511, z: 2.049742}
+  m_Center: {x: -0.27160767, y: 0.61200655, z: -0.09527274}
 --- !u!1 &1924487255
 GameObject:
   m_ObjectHideFlags: 0
