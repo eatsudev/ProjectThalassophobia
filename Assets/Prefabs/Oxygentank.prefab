@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8949605352020106546}
   - component: {fileID: 9124792646288003424}
   m_Layer: 6
-  m_Name: Oxygentank
+  m_Name: OxygenTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213be4c779678d74284901571f1b8648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: oxygen
+  itemName: OxygenTank
 --- !u!65 &9124792646288003424
 BoxCollider:
   m_ObjectHideFlags: 0

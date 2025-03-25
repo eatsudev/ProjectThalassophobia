@@ -11,9 +11,9 @@ public class ItemPickup : MonoBehaviour
     public Transform itemHolder;
     public Text itemNameUI;
 
-    private List<GameObject> inventory = new List<GameObject>();
+    public List<GameObject> inventory = new List<GameObject>();
     private int maxItems = 5;
-    private int currentItemIndex = -1;
+    public int currentItemIndex = -1;
     public float itemSize = 1f;
 
     void Update()

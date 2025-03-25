@@ -1053,6 +1053,7 @@ MonoBehaviour:
   oxygenBar: {fileID: 101426047}
   inventory: {fileID: 235705899}
   oxygenTankItemName: OxygenTank
+  itemPickup: {fileID: 235705900}
 --- !u!114 &235705898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1079,6 +1080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: []
+  maxInventorySize: 5
   currentItemIndex: 0
 --- !u!114 &235705900
 MonoBehaviour:
@@ -1099,6 +1101,8 @@ MonoBehaviour:
   cameraTransform: {fileID: 2088405238}
   itemHolder: {fileID: 1797255869}
   itemNameUI: {fileID: 1517308126}
+  inventory: []
+  currentItemIndex: -1
   itemSize: 0.5
 --- !u!1 &252046749
 GameObject:
@@ -8291,6 +8295,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hands w Flashlight
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 227a9a1d426d6704aa7ba42b421ba2b3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8747,24 +8756,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1792392528 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7837535381714947957, guid: 843446bac572909479fa3328bf58187c,
-    type: 3}
-  m_PrefabInstance: {fileID: 8019466738396414159}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1792392531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1792392528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a325f6a3ee98544cae0c6d6ca2f551d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1797255868
 GameObject:
   m_ObjectHideFlags: 0
@@ -8776,7 +8767,7 @@ GameObject:
   - component: {fileID: 1797255869}
   m_Layer: 0
   m_Name: ItemHolder
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8914,33 +8905,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &1855923747 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6485902968542205100, guid: b056499ade8baa54691d98e4a56f1071,
-    type: 3}
-  m_PrefabInstance: {fileID: 623671816238689915}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1855923751
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1855923747}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.8908739, y: 2.3269627, z: 3.5038018}
-  m_Center: {x: -0.014196026, y: 1.1050473, z: 1.7210656}
 --- !u!1001 &1859971441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9417,21 +9381,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5857317030523063830, guid: b056499ade8baa54691d98e4a56f1071,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3.6029484
-      objectReference: {fileID: 0}
-    - target: {fileID: 5857317030523063830, guid: b056499ade8baa54691d98e4a56f1071,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3.6029484
-      objectReference: {fileID: 0}
-    - target: {fileID: 5857317030523063830, guid: b056499ade8baa54691d98e4a56f1071,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 3.6029484
-      objectReference: {fileID: 0}
-    - target: {fileID: 5857317030523063830, guid: b056499ade8baa54691d98e4a56f1071,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: -1758.08
       objectReference: {fileID: 0}
@@ -9488,11 +9437,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6485902968542205100, guid: b056499ade8baa54691d98e4a56f1071,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1855923751}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b056499ade8baa54691d98e4a56f1071, type: 3}
 --- !u!1001 &3717132120538027488
 PrefabInstance:
@@ -9579,6 +9524,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 754507615}
     m_Modifications:
+    - target: {fileID: 160319240686151654, guid: 843446bac572909479fa3328bf58187c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3218857176375769966, guid: 843446bac572909479fa3328bf58187c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9629,24 +9579,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4341983750712988855, guid: 843446bac572909479fa3328bf58187c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7837535381714947957, guid: 843446bac572909479fa3328bf58187c,
         type: 3}
       propertyPath: m_Name
-      value: Oxygentank
-      objectReference: {fileID: 0}
-    - target: {fileID: 8949605352020106546, guid: 843446bac572909479fa3328bf58187c,
-        type: 3}
-      propertyPath: itemName
       value: OxygenTank
+      objectReference: {fileID: 0}
+    - target: {fileID: 9112266461309764824, guid: 843446bac572909479fa3328bf58187c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7837535381714947957, guid: 843446bac572909479fa3328bf58187c,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1792392531}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 843446bac572909479fa3328bf58187c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
@@ -28,13 +27,15 @@ public class Inventory : MonoBehaviour
         return "";
     }
 
-    public void RemoveItem(string itemName)
+    public bool RemoveItem(string itemName)
     {
         if (items.Contains(itemName))
         {
             items.Remove(itemName);
             currentItemIndex = Mathf.Clamp(currentItemIndex, 0, items.Count - 1);
+            return true;
         }
+        return false;
     }
 
     public void SwitchItem(int index)
