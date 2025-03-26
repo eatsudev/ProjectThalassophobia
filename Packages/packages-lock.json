@@ -159,6 +159,21 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "com.unity.vfx-toolbox": {
+      "version": "file:C:/Users/anthony/Downloads/VFXToolbox-master/VFXToolbox-master",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.unity.visualeffectgraph": {
+      "version": "14.0.11",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.shadergraph": "14.0.11",
+        "com.unity.render-pipelines.core": "14.0.11"
+      }
+    },
     "com.unity.visualscripting": {
       "version": "1.9.4",
       "depth": 0,
