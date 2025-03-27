@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cd1eda9925442064e9c1f5538811c61d
+guid: c9fd7ec408516e446b8d79971f1a3d64
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material #25
-    second: {fileID: 2100000, guid: b257165feab944347ae6c40f4caa64a7, type: 2}
+      name: Smaller Air Bladder
+    second: {fileID: 2100000, guid: 19bcac7a0855567468b22dde86a50e05, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Smaller Balloon
+    second: {fileID: 2100000, guid: 1938c4a719a262449abfe60cb538fbcb, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
