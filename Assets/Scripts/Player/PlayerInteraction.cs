@@ -7,11 +7,11 @@ public class PlayerInteraction : MonoBehaviour
     public Transform cameraTransform;
     public float interactRange = 2f;
     public LayerMask interactableLayer;
-    public ItemPickup itemPickup; // Reference to inventory system
+    public ItemPickup itemPickup; 
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) // Press 'E' to interact
+        if (Input.GetKeyDown(KeyCode.E)) 
         {
             TryInteract();
         }

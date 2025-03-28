@@ -150,7 +150,7 @@ Material:
     - _Projection: 1
     - _ReflectionBlur: 1.05
     - _RefractAmt: 0
-    - _RefractionStrength: 1.36
+    - _RefractionStrength: 1.35
     - _RefractiveIndexOfAir: 1.172
     - _RefractiveIndexOfWater: 1.33
     - _S: 1
