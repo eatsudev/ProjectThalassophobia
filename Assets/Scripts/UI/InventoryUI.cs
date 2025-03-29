@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    public GameObject inventorySlotPrefab;
     private ItemPickup itemPickup;
     public Transform inventoryPanel;
 
@@ -23,28 +22,6 @@ public class InventoryUI : MonoBehaviour
         InitializeInventoryUI();
         UpdateInventoryUI();
     }
-
-    void Update()
-    {
-        //ViewItemName();
-    }
-
-    /*void ViewItemName()
-    {
-        if (inventoryText != null && itemPickup != null)
-        {
-            if (itemPickup.inventory.Count > 0 && itemPickup.currentItemIndex >= 0)
-            {
-                Item heldItem = itemPickup.GetHeldItem();
-                if (heldItem != null)
-                {
-                    inventoryText.text = "Item: " + heldItem.itemName;
-                    return;
-                }
-            }
-        }
-        inventoryText.text = "Item: None";
-    }*/
 
     private void InitializeInventoryUI()
     {
@@ -64,17 +41,21 @@ public class InventoryUI : MonoBehaviour
         {
             Transform iconTransform = itemSlots[i].transform.Find("InventoryIcon" + (i + 1));
 
-            if (i < itemPickup.inventory.Count && itemPickup.inventory[i] != null)
+            if (iconTransform != null)
             {
-                if (iconTransform != null)
+                if (i < itemPickup.inventory.Count)
                 {
-                    iconTransform.GetComponent<Image>().sprite = itemPickup.inventory[i].icon;
-                    iconTransform.gameObject.SetActive(true);
+                    if (itemPickup.inventory[i] != null)
+                    {
+                        iconTransform.GetComponent<Image>().sprite = itemPickup.inventory[i].icon;
+                        iconTransform.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        iconTransform.gameObject.SetActive(false);
+                    }
                 }
-            }
-            else
-            {
-                if (iconTransform != null)
+                else
                 {
                     iconTransform.gameObject.SetActive(false);
                 }
@@ -91,12 +72,8 @@ public class InventoryUI : MonoBehaviour
             itemPickup.inventory.RemoveAt(itemIndex);
             Destroy(item.gameObject);
 
-            while (itemPickup.inventory.Count > MAX_ITEMS)
-            {
-                itemPickup.inventory.RemoveAt(itemPickup.inventory.Count - 1);
-            }
-
             UpdateInventoryUI();
+
             itemPickup.EquipNextAvailableItem();
         }
     }

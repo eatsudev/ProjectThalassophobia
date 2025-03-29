@@ -24,8 +24,16 @@ public class Oxygen : MonoBehaviour
 
     private void Update()
     {
-        hasOxygenTank = IsHoldingOxygenTank();
-        if (Input.GetKeyDown(KeyCode.R) && IsHoldingOxygenTank())
+        if (itemPickup.inventory.Count > 0)
+        {
+            hasOxygenTank = IsHoldingOxygenTank();
+        }
+        else
+        {
+            hasOxygenTank = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.R) && hasOxygenTank)
         {
             ReloadOxygen();
         }
@@ -45,7 +53,7 @@ public class Oxygen : MonoBehaviour
             }
         }
     }
-    
+
 
     private void ReloadOxygen()
     {
@@ -59,49 +67,37 @@ public class Oxygen : MonoBehaviour
         currentOxygen = maxOxygen;
         hasOxygenTank = false;
 
-        if (itemPickup.inventory[itemPickup.currentItemIndex] != null &&
-        itemPickup.inventory[itemPickup.currentItemIndex].name.Contains("OxygenTank"))
+        if (itemPickup.currentItemIndex >= 0 && itemPickup.currentItemIndex < itemPickup.inventory.Count)
         {
             Item usedItem = itemPickup.inventory[itemPickup.currentItemIndex];
 
-            itemPickup.RemoveItem(itemPickup.inventory[itemPickup.currentItemIndex]);
-
-            if (usedItem.gameObject != null)
+            if (usedItem != null && usedItem.name.Contains("OxygenTank"))
             {
-                Destroy(usedItem.gameObject);
-            }
-
-            Debug.Log("Oxygen Tank used and removed.");
-        }
-        else
-        {
-            Debug.Log("Error: No Oxygen Tank found in inventory.");
-        }
-
-
-        UpdateOxygenUI();
-    }
-
-    /*private void EquipNextAvailableItem()
-    {
-        if (itemPickup.currentItemIndex >= 0 && itemPickup.currentItemIndex < itemPickup.inventory.Count)
-        {
-            GameObject newItem = itemPickup.inventory[itemPickup.currentItemIndex];
-
-            if (newItem != null)
-            {
-                newItem.SetActive(true);
+                itemPickup.RemoveItem(usedItem);
+                Debug.Log("Oxygen Tank used and removed.");
             }
             else
             {
-                Debug.Log("No valid item in the current slot.");
+                Debug.Log("Error: No Oxygen Tank found in inventory.");
             }
         }
-    }*/
+        else
+        {
+            Debug.LogWarning("Invalid item index or inventory is empty.");
+        }
+
+        if (itemPickup.currentItemIndex >= itemPickup.inventory.Count)
+        {
+            itemPickup.currentItemIndex = itemPickup.inventory.Count - 1;
+        }
+
+        itemPickup.EquipNextAvailableItem();
+        UpdateOxygenUI();
+    }
 
     private bool IsHoldingOxygenTank()
     {
-        if (itemPickup.inventory.Count > 0 && itemPickup.currentItemIndex >= 0)
+        if (itemPickup.inventory.Count > 0 && itemPickup.currentItemIndex >= 0 && itemPickup.currentItemIndex < itemPickup.inventory.Count)
         {
             Item heldItem = itemPickup.inventory[itemPickup.currentItemIndex];
             if (heldItem != null)

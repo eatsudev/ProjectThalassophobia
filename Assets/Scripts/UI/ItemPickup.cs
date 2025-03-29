@@ -110,7 +110,7 @@ public class ItemPickup : MonoBehaviour
     {
         if (index < 0 || index >= inventory.Count)
         {
-            Debug.LogWarning("Invalid index selected!");
+            Debug.LogWarning("Invalid index selected! Index: " + index);
             return;
         }
 
@@ -120,7 +120,7 @@ public class ItemPickup : MonoBehaviour
             return;
         }
 
-        if (currentItemIndex >= 0 && inventory[currentItemIndex] != null)
+        if (currentItemIndex >= 0 && currentItemIndex < inventory.Count && inventory[currentItemIndex] != null)
         {
             inventory[currentItemIndex].gameObject.SetActive(false);
         }
@@ -131,6 +131,13 @@ public class ItemPickup : MonoBehaviour
 
     public void EquipNextAvailableItem()
     {
+        if (inventory.Count == 0)
+        {
+            Debug.LogWarning("EquipNextAvailableItem called, but inventory is empty.");
+            currentItemIndex = -1;
+            return;
+        }
+
         for (int i = 0; i < inventory.Count; i++)
         {
             if (inventory[i] != null)
@@ -140,7 +147,7 @@ public class ItemPickup : MonoBehaviour
             }
         }
 
-        Debug.Log("No valid items left in inventory.");
+        Debug.LogWarning("No valid items left in inventory.");
         currentItemIndex = -1;
     }
 
@@ -177,24 +184,18 @@ public class ItemPickup : MonoBehaviour
         if (inventory.Contains(item))
         {
             int index = inventory.IndexOf(item);
-            inventory[index] = null;
+            inventory.RemoveAt(index);
             Destroy(item.gameObject);
             Debug.Log(item.itemName + " has been removed from inventory.");
 
-            FindObjectOfType<InventoryUI>().RemoveItem(item); 
+            FindObjectOfType<InventoryUI>().UpdateInventoryUI();
+
+            if (currentItemIndex >= inventory.Count)
+            {
+                currentItemIndex = inventory.Count - 1;
+            }
+
             EquipNextAvailableItem();
         }
     }
-
-
-
-    /*public void UseItem(string itemName)
-    {
-        Item itemToRemove = inventory.Find(i => i.itemName == itemName);
-        if (itemToRemove != null)
-        {
-            inventory.Remove(itemToRemove);
-            inventoryUI.RemoveItem(itemName);
-        }
-    }*/
 }
