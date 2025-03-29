@@ -7,12 +7,13 @@ public class Chest : MonoBehaviour
     public string requiredKeycardID;
     private Animator anim;
     private bool isOpened = false;
+    public ParticleSystem bubbles;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
     }
-    public void TryOpen(GameObject heldItem)
+    public void TryOpen(Item heldItem)
     {
         if (isOpened)
         {
@@ -49,7 +50,8 @@ public class Chest : MonoBehaviour
     private void OpenChest()
     {
         Debug.Log("Chest opened!");
-        // Add animation
+
         anim.SetBool("isOpen", true);
+        bubbles.Play();
     }
 }

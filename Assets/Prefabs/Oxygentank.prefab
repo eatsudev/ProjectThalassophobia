@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: OxygenTank
+  icon: {fileID: 794791685, guid: e0ea09ecac04bb145a4611e5a61f37fe, type: 3}
 --- !u!65 &9124792646288003424
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,8 +11,8 @@ public class ItemPickup : MonoBehaviour
     public Transform itemHolder;
     public Text itemNameUI;
 
-    public List<GameObject> inventory = new List<GameObject>();
-    private int maxItems = 5;
+    public List<Item> inventory = new List<Item>();
+    public int maxItems = 5;
     public int currentItemIndex = -1;
     public float itemSize = 1f;
 
@@ -22,7 +22,7 @@ public class ItemPickup : MonoBehaviour
     {
         ShowItemNameUI();
 
-        if (Input.GetKeyDown(KeyCode.E)) 
+        if (Input.GetKeyDown(KeyCode.E))
         {
             TryPickupItem();
         }
@@ -48,7 +48,7 @@ public class ItemPickup : MonoBehaviour
 
     void TryPickupItem()
     {
-        if (inventory.Count >= maxItems && !inventory.Contains(null)) return; 
+        int emptySlot = inventory.IndexOf(null);
 
         RaycastHit hit;
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, pickupRange, itemLayer))
@@ -56,26 +56,24 @@ public class ItemPickup : MonoBehaviour
             Item item = hit.collider.GetComponent<Item>();
             if (item != null)
             {
-                int emptySlot = inventory.IndexOf(null);
-                if (emptySlot == -1) 
-                {
-                    if (inventory.Count >= maxItems) return; 
-                    emptySlot = inventory.Count;
-                }
-
-                GameObject newItem = Instantiate(hit.collider.gameObject, itemHolder);
+                Item newItem = Instantiate(item, itemHolder);
                 newItem.transform.position = itemHolder.position;
                 newItem.transform.rotation = itemHolder.rotation;
                 newItem.transform.localScale = Vector3.one * itemSize;
-                newItem.SetActive(false);
+                newItem.gameObject.SetActive(false);
 
-                if (emptySlot < inventory.Count)
+                if (emptySlot != -1)
                 {
                     inventory[emptySlot] = newItem;
                 }
-                else
+                else if (inventory.Count < maxItems)
                 {
                     inventory.Add(newItem);
+                }
+                else
+                {
+                    Debug.LogWarning("Inventory is full!");
+                    return;
                 }
 
                 Destroy(hit.collider.gameObject);
@@ -84,6 +82,8 @@ public class ItemPickup : MonoBehaviour
                 {
                     EquipNextAvailableItem();
                 }
+
+                FindObjectOfType<InventoryUI>().UpdateInventoryUI();
             }
         }
     }
@@ -122,11 +122,11 @@ public class ItemPickup : MonoBehaviour
 
         if (currentItemIndex >= 0 && inventory[currentItemIndex] != null)
         {
-            inventory[currentItemIndex].SetActive(false);
+            inventory[currentItemIndex].gameObject.SetActive(false);
         }
 
         currentItemIndex = index;
-        inventory[currentItemIndex].SetActive(true);
+        inventory[currentItemIndex].gameObject.SetActive(true);
     }
 
     public void EquipNextAvailableItem()
@@ -160,7 +160,7 @@ public class ItemPickup : MonoBehaviour
         return false;
     }
 
-    public GameObject GetHeldItem()
+    public Item GetHeldItem()
     {
         if (inventory.Count > 0 && currentItemIndex >= 0 && currentItemIndex < inventory.Count)
         {
@@ -172,15 +172,29 @@ public class ItemPickup : MonoBehaviour
         return null;
     }
 
-    public void RemoveItem(GameObject item)
+    public void RemoveItem(Item item)
     {
         if (inventory.Contains(item))
         {
-            inventory.Remove(item);
-            Destroy(item);
-            Debug.Log(item.name + " has been removed from inventory.");
+            int index = inventory.IndexOf(item);
+            inventory[index] = null;
+            Destroy(item.gameObject);
+            Debug.Log(item.itemName + " has been removed from inventory.");
 
+            FindObjectOfType<InventoryUI>().RemoveItem(item); 
             EquipNextAvailableItem();
         }
     }
+
+
+
+    /*public void UseItem(string itemName)
+    {
+        Item itemToRemove = inventory.Find(i => i.itemName == itemName);
+        if (itemToRemove != null)
+        {
+            inventory.Remove(itemToRemove);
+            inventoryUI.RemoveItem(itemName);
+        }
+    }*/
 }

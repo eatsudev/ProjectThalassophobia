@@ -62,8 +62,15 @@ public class Oxygen : MonoBehaviour
         if (itemPickup.inventory[itemPickup.currentItemIndex] != null &&
         itemPickup.inventory[itemPickup.currentItemIndex].name.Contains("OxygenTank"))
         {
-            Destroy(itemPickup.inventory[itemPickup.currentItemIndex]);
-            itemPickup.inventory[itemPickup.currentItemIndex] = null; 
+            Item usedItem = itemPickup.inventory[itemPickup.currentItemIndex];
+
+            itemPickup.RemoveItem(itemPickup.inventory[itemPickup.currentItemIndex]);
+
+            if (usedItem.gameObject != null)
+            {
+                Destroy(usedItem.gameObject);
+            }
+
             Debug.Log("Oxygen Tank used and removed.");
         }
         else
@@ -96,7 +103,7 @@ public class Oxygen : MonoBehaviour
     {
         if (itemPickup.inventory.Count > 0 && itemPickup.currentItemIndex >= 0)
         {
-            GameObject heldItem = itemPickup.inventory[itemPickup.currentItemIndex];
+            Item heldItem = itemPickup.inventory[itemPickup.currentItemIndex];
             if (heldItem != null)
             {
                 Debug.Log("Currently Holding: " + heldItem.name);
