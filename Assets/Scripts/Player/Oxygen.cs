@@ -14,6 +14,8 @@ public class Oxygen : MonoBehaviour
     public Inventory inventory;
     public string oxygenTankItemName = "OxygenTank";
     public ItemPickup itemPickup;
+    public GameObject deathScreenUI;
+    public PlayerController playerController;
 
     private void Start()
     {
@@ -123,6 +125,14 @@ public class Oxygen : MonoBehaviour
     private void PlayerDrown()
     {
         Debug.Log("Player has drowned");
-        //death logic
+
+        deathScreenUI.SetActive(true);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        if (playerController != null)
+        {
+            playerController.canLook = false; 
+        }
     }
 }

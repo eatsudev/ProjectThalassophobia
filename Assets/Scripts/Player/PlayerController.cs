@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask waterMask;
     private float waterSurfaceY;
     public float playerHeight = 1.0f;
+    public bool canLook = true;
 
     [Header("Player Rotation")]
     public float sensitivity = 1;
@@ -64,8 +65,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void LookAround()
+    public void LookAround()
     {
+        if (!canLook) return;
+
         rotX += Input.GetAxis("Mouse X") * sensitivity;
         rotY += Input.GetAxis("Mouse Y") * sensitivity;
 

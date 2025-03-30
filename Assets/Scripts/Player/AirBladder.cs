@@ -19,6 +19,7 @@ public class AirBladder : MonoBehaviour
     public GameObject itemHolder;
     public ItemPickup itemPickup;
     public GameObject airBladderUI;
+    public GameObject surface;
 
     void Start()
     {
@@ -53,8 +54,9 @@ public class AirBladder : MonoBehaviour
             SwapHandModel(true);
             rb.isKinematic = false;
             StartCoroutine(RiseToSurface());
-            itemHolder.SetActive(false);
             airBladderUI.SetActive(false);
+            surface.SetActive(true);
+            itemHolder.SetActive(false);
         }
     }
 
