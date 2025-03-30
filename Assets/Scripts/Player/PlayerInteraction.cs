@@ -7,7 +7,7 @@ public class PlayerInteraction : MonoBehaviour
     public Transform cameraTransform;
     public float interactRange = 2f;
     public LayerMask interactableLayer;
-    public ItemPickup itemPickup; 
+    public ItemPickup itemPickup;
 
     void Update()
     {

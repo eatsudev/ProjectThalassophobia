@@ -8,6 +8,7 @@ public class Chest : MonoBehaviour
     private Animator anim;
     private bool isOpened = false;
     public ParticleSystem bubbles;
+    public AudioSource bubbleSFX;
 
     private void Start()
     {
@@ -53,5 +54,6 @@ public class Chest : MonoBehaviour
 
         anim.SetBool("isOpen", true);
         bubbles.Play();
+        bubbleSFX.Play();
     }
 }

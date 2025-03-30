@@ -17,6 +17,7 @@ public class ItemPickup : MonoBehaviour
     public float itemSize = 1f;
 
     public List<Keycard> keycards = new List<Keycard>();
+    public AudioSource pickupSFX;
 
     void Update()
     {
@@ -82,7 +83,7 @@ public class ItemPickup : MonoBehaviour
                 {
                     EquipNextAvailableItem();
                 }
-
+                pickupSFX.Play();
                 FindObjectOfType<InventoryUI>().UpdateInventoryUI();
             }
         }
