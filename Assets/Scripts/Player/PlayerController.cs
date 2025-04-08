@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private float waterSurfaceY;
     public float playerHeight = 1.0f;
     public bool canLook = true;
+    public float waterSurfaceHeight = 50f;
+    public float maxAllowedHeightBelowSurface = 0.5f;
 
     [Header("Player Rotation")]
     public float sensitivity = 1;
@@ -126,6 +128,14 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y >= waterSurfaceY)
         {
             transform.position = new Vector3(transform.position.x, waterSurfaceY, transform.position.z);
+        }
+
+        Vector3 pos = transform.position;
+        float maxY = waterSurfaceHeight - maxAllowedHeightBelowSurface;
+        if (pos.y > maxY)
+        {
+            pos.y = maxY;
+            transform.position = pos;
         }
     }
     

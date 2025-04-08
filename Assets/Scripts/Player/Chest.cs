@@ -9,10 +9,14 @@ public class Chest : MonoBehaviour
     private bool isOpened = false;
     public ParticleSystem bubbles;
     public AudioSource bubbleSFX;
+    private Collider chestCollider;
+    public GameObject wrongChestText;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        chestCollider = GetComponent<Collider>();
+        wrongChestText.SetActive(false);
     }
     public void TryOpen(Item heldItem)
     {
@@ -40,7 +44,9 @@ public class Chest : MonoBehaviour
             else
             {
                 Debug.Log("Incorrect keycard: " + heldItem.name + " does not match " + requiredKeycardID);
+                StartCoroutine(DisableChestText());
             }
+            
         }
         else
         {
@@ -55,5 +61,13 @@ public class Chest : MonoBehaviour
         anim.SetBool("isOpen", true);
         bubbles.Play();
         bubbleSFX.Play();
+        chestCollider.enabled = false;
+    }
+
+    private IEnumerator DisableChestText()
+    {
+        wrongChestText.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        wrongChestText.SetActive(false);
     }
 }

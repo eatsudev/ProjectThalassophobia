@@ -10,8 +10,7 @@ public class Oxygen : MonoBehaviour
     public float oxygenDepletionRate = 1f; 
     public float depletionInterval = 10f;
     public bool hasOxygenTank = false;
-    public Slider oxygenBar; 
-    public Inventory inventory;
+    public Slider oxygenBar;
     public string oxygenTankItemName = "OxygenTank";
     public ItemPickup itemPickup;
     public GameObject deathScreenUI;
@@ -19,7 +18,6 @@ public class Oxygen : MonoBehaviour
 
     private void Start()
     {
-        inventory = GetComponent<Inventory>();
         currentOxygen = maxOxygen;
         StartCoroutine(DecreaseOxygen());
     }
