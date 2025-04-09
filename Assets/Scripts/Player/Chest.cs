@@ -11,12 +11,34 @@ public class Chest : MonoBehaviour
     public AudioSource bubbleSFX;
     private Collider chestCollider;
     public GameObject wrongChestText;
+    public float detectionRange = 5f;
+    public AudioSource proximitySFX;
+    private bool isPlayingAudio = false;
+    public Transform player;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
         chestCollider = GetComponent<Collider>();
         wrongChestText.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (player == null || isOpened) return;
+
+        float distance = Vector3.Distance(transform.position, player.position);
+
+        if (distance <= detectionRange && !isPlayingAudio)
+        {
+            proximitySFX.Play();
+            isPlayingAudio = true;
+        }
+        else if (distance > detectionRange && isPlayingAudio)
+        {
+            proximitySFX.Stop();
+            isPlayingAudio = false;
+        }
     }
     public void TryOpen(Item heldItem)
     {
@@ -62,6 +84,14 @@ public class Chest : MonoBehaviour
         bubbles.Play();
         bubbleSFX.Play();
         chestCollider.enabled = false;
+
+        if (proximitySFX.isPlaying)
+        {
+            proximitySFX.Stop();
+            isPlayingAudio = false;
+        }
+
+        isOpened = true;
     }
 
     private IEnumerator DisableChestText()

@@ -79,6 +79,8 @@ public class AirBladder : MonoBehaviour
             winUI.SetActive(true);
             SwapHandModel(false);
             RemoveAirBladderFromInventory();
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             Debug.Log("You reached the surface!");
         }
     }

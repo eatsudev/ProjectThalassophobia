@@ -81,10 +81,8 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-
         moveX = Input.GetAxis("Horizontal");
         moveZ = Input.GetAxis("Forward");
-
 
         if (!inWater)
         {
@@ -106,13 +104,18 @@ public class PlayerController : MonoBehaviour
     private void TerrainCollide()
     {
         RaycastHit hit;
-        
+        float rayLength = playerHeight + 0.5f;
 
-        if(Physics.Raycast(transform.position, Vector3.down, out hit, playerHeight + 0.1f))
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, rayLength))
         {
             if (hit.collider.CompareTag("Ground"))
             {
-                transform.position = hit.point + Vector3.up * playerHeight;
+                float groundY = hit.point.y + playerHeight;
+                if (transform.position.y < groundY)
+                {
+                    Vector3 correctedPos = new Vector3(transform.position.x, groundY, transform.position.z);
+                    transform.position = correctedPos;
+                }
             }
         }
     }
