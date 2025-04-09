@@ -55297,7 +55297,7 @@ Animator:
   m_GameObject: {fileID: 1955869619}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1a3b482d45fbec14aa2ac051b8e7dd00, type: 2}
+  m_Controller: {fileID: 9100000, guid: e8bbb4b42c9472e4183cd752f6bbe098, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -55321,7 +55321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.27058825, g: 0.9490197, b: 0.8196079, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.14901961}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -59829,7 +59829,7 @@ Animator:
   m_GameObject: {fileID: 2121167754}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1a3b482d45fbec14aa2ac051b8e7dd00, type: 2}
+  m_Controller: {fileID: 9100000, guid: e8bbb4b42c9472e4183cd752f6bbe098, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -59853,7 +59853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -59873,7 +59873,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The More You Hear Beep Sound, The More Closer You With The Chest
+  m_Text: The more you hear the beep sound, the closer you are with the chest
 --- !u!222 &2121167758
 CanvasRenderer:
   m_ObjectHideFlags: 0
