@@ -523,7 +523,7 @@ RectTransform:
   m_GameObject: {fileID: 717094427}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4267977, y: 1.4267977, z: 1.4267977}
+  m_LocalScale: {x: 1.8051845, y: 1.8051845, z: 1.8051845}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 241581072}
@@ -531,7 +531,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000076294, y: -81}
+  m_AnchoredPosition: {x: 0.0000076294, y: -173}
   m_SizeDelta: {x: 228.2595, y: 78.5002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &717094429
@@ -1049,15 +1049,15 @@ RectTransform:
   m_GameObject: {fileID: 1028571869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.91161, y: 0.91161, z: 0.91161}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1175921608}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 259.96}
-  m_SizeDelta: {x: 579.9704, y: 519.92}
+  m_AnchoredPosition: {x: 4, y: 218.97}
+  m_SizeDelta: {x: 745.162, y: 748.48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1028571871
 MonoBehaviour:
@@ -1241,7 +1241,7 @@ RectTransform:
   m_GameObject: {fileID: 1293183426}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4267977, y: 1.4267977, z: 1.4267977}
+  m_LocalScale: {x: 1.8051845, y: 1.8051845, z: 1.8051845}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 866068096}
@@ -1249,7 +1249,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.57309, y: -241}
+  m_AnchoredPosition: {x: 0.72504, y: -375.42902}
   m_SizeDelta: {x: 227.1133, y: 77.1898}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1293183428
