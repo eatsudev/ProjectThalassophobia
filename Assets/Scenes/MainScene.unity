@@ -493,6 +493,12 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3546075966656511991, guid: eb6d4d173b40dc242834fd5d000a90ae, type: 3}
+--- !u!1 &7814572 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7837535381714947957, guid: 843446bac572909479fa3328bf58187c,
+    type: 3}
+  m_PrefabInstance: {fileID: 108738535}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9880253
 GameObject:
   m_ObjectHideFlags: 0
@@ -3208,6 +3214,8 @@ MonoBehaviour:
   detectionRange: 1100
   proximitySFX: {fileID: 88544554}
   player: {fileID: 235705893}
+  nextKeycard: {fileID: 325552666}
+  oxygenTank: {fileID: 7814572}
 --- !u!95 &88544552
 Animator:
   serializedVersion: 5
@@ -3877,6 +3885,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OxygenTank
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837535381714947957, guid: 843446bac572909479fa3328bf58187c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8949605352020106546, guid: 843446bac572909479fa3328bf58187c,
         type: 3}
@@ -6477,6 +6490,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OxygenTank
       objectReference: {fileID: 0}
+    - target: {fileID: 7837535381714947957, guid: 843446bac572909479fa3328bf58187c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8949605352020106546, guid: 843446bac572909479fa3328bf58187c,
         type: 3}
       propertyPath: itemName
@@ -7143,6 +7161,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 10b81467bcb96bb4d8898b61fe78a4ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7220,6 +7243,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keycardID: Yellow
+--- !u!1 &194225772 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7837535381714947957, guid: 843446bac572909479fa3328bf58187c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2008866386}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &194598030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8444,7 +8473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b140d3d3a1a709a4fb70db5336ad4f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupRange: 50
+  pickupRange: 75
   itemLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -8457,6 +8486,7 @@ MonoBehaviour:
   itemSize: 0.5
   keycards: []
   pickupSFX: {fileID: 235705903}
+  heldItemText: {fileID: 399585781}
 --- !u!114 &235705901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10496,6 +10526,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 843469494}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &325552666 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 32449349465918487, guid: 9cf910acf79c49246b71ae9ccdf860ac,
+    type: 3}
+  m_PrefabInstance: {fileID: 2977907720822987659}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &330882032
 GameObject:
   m_ObjectHideFlags: 0
@@ -12333,6 +12369,12 @@ MonoBehaviour:
   turnSpeed: 50
   changeDirectionTime: 50
   swimDirection: {x: 0, y: 0, z: 0}
+--- !u!1 &380766314 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7837535381714947957, guid: 843446bac572909479fa3328bf58187c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1938974136}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &380956406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13231,6 +13273,85 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 442.75586, y: 2147.1597, z: 10222.174}
   m_Center: {x: 220.87793, y: -499.40942, z: 393.12598}
+--- !u!1 &399585779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 399585780}
+  - component: {fileID: 399585782}
+  - component: {fileID: 399585781}
+  m_Layer: 5
+  m_Name: HoldItemText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &399585780
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399585779}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1593365709}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -647.5894, y: -448}
+  m_SizeDelta: {x: 551.7279, y: 86.2703}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &399585781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399585779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 5170f7d8aa8aac6439372049030bc27b, type: 3}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &399585782
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399585779}
+  m_CullTransparentMesh: 1
 --- !u!1001 &410955799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15169,6 +15290,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1188688509}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &476636553 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4042656575860132418, guid: 7ecf03b1ce144f24cb369165289cede0,
+    type: 3}
+  m_PrefabInstance: {fileID: 7565532260968414961}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &485915481 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7837535381714947957, guid: 843446bac572909479fa3328bf58187c,
+    type: 3}
+  m_PrefabInstance: {fileID: 166175302}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &486368325 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 5bb20e0187139474496c4c86ba49900d,
@@ -16058,6 +16191,7 @@ Transform:
   - {fileID: 1282705564}
   - {fileID: 1050352893}
   - {fileID: 279169672}
+  - {fileID: 594117747}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519708578
@@ -18316,6 +18450,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 152913852}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &594117746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 594117747}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &594117747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594117746}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 508008537}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &595188937
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18988,6 +19153,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2589028131876919852, guid: 7ca11c18722cf394c8b151d0d9b9473b,
     type: 3}
   m_PrefabInstance: {fileID: 1435672734}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &607689139 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 33168578900850921, guid: d564d35705ff8c14cb8994ee4c2b79e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 4327509160916327074}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &609613807
 PrefabInstance:
@@ -26413,6 +26584,8 @@ MonoBehaviour:
   detectionRange: 1100
   proximitySFX: {fileID: 908738817}
   player: {fileID: 235705893}
+  nextKeycard: {fileID: 476636553}
+  oxygenTank: {fileID: 485915481}
 --- !u!95 &908738814
 Animator:
   serializedVersion: 5
@@ -30221,6 +30394,8 @@ MonoBehaviour:
   detectionRange: 1100
   proximitySFX: {fileID: 1005954721}
   player: {fileID: 235705893}
+  nextKeycard: {fileID: 607689139}
+  oxygenTank: {fileID: 194225772}
 --- !u!82 &1005954720
 AudioSource:
   m_ObjectHideFlags: 0
@@ -32442,6 +32617,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2589028131876919852, guid: 7ca11c18722cf394c8b151d0d9b9473b,
     type: 3}
   m_PrefabInstance: {fileID: 932981108}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1091982245 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7837535381714947957, guid: 843446bac572909479fa3328bf58187c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8019466738396414159}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1096641682
 PrefabInstance:
@@ -36478,6 +36659,8 @@ MonoBehaviour:
   detectionRange: 1100
   proximitySFX: {fileID: 1254321010}
   player: {fileID: 235705893}
+  nextKeycard: {fileID: 1615164487}
+  oxygenTank: {fileID: 380766314}
 --- !u!65 &1254321007
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37897,6 +38080,8 @@ MonoBehaviour:
   detectionRange: 1100
   proximitySFX: {fileID: 1282705570}
   player: {fileID: 235705893}
+  nextKeycard: {fileID: 1865919305}
+  oxygenTank: {fileID: 594117746}
 --- !u!65 &1282705568
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39684,6 +39869,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1328489326}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1328948221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7805187519097681048, guid: d4b241920310fdc48bf0e31334f38f29,
+    type: 3}
+  m_PrefabInstance: {fileID: 5939346282510489398}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1333047294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40479,6 +40670,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OxygenTank
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837535381714947957, guid: 843446bac572909479fa3328bf58187c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8949605352020106546, guid: 843446bac572909479fa3328bf58187c,
         type: 3}
@@ -45602,6 +45798,7 @@ RectTransform:
   - {fileID: 1383487394}
   - {fileID: 1760879702}
   - {fileID: 1517476439}
+  - {fileID: 399585780}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -46226,6 +46423,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea21b37ecc376ce4bbd5de6cced3bd50, type: 3}
+--- !u!1 &1615164487 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6735399479449816440, guid: c240761ff713b3941afd2f50bc949869,
+    type: 3}
+  m_PrefabInstance: {fileID: 7065754262200844235}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1618957977 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3942092146421532825, guid: c1d84136c79bba14790f7b150d6fce67,
@@ -46577,6 +46780,8 @@ MonoBehaviour:
   detectionRange: 1100
   proximitySFX: {fileID: 1631593951}
   player: {fileID: 235705893}
+  nextKeycard: {fileID: 192947967}
+  oxygenTank: {fileID: 2146052634}
 --- !u!95 &1631593948
 Animator:
   serializedVersion: 5
@@ -51345,6 +51550,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1859971441}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1865919305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3926387385632022958, guid: b435ceebc9f0b2d42b7c2dbf842761b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 6417581481766001993}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1872753584 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5064113577455622087, guid: ff7dd4f11d696b949be385f15d1a1106,
@@ -52977,6 +53188,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OxygenTank
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837535381714947957, guid: 843446bac572909479fa3328bf58187c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8949605352020106546, guid: 843446bac572909479fa3328bf58187c,
         type: 3}
@@ -56405,6 +56621,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OxygenTank
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837535381714947957, guid: 843446bac572909479fa3328bf58187c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8949605352020106546, guid: 843446bac572909479fa3328bf58187c,
         type: 3}
@@ -60364,6 +60585,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1528292675}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2146052634 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7837535381714947957, guid: 843446bac572909479fa3328bf58187c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1359669212}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2146930391
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60464,6 +60691,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Black
+      objectReference: {fileID: 0}
+    - target: {fileID: 32449349465918487, guid: 9cf910acf79c49246b71ae9ccdf860ac,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 808563458439878317, guid: 9cf910acf79c49246b71ae9ccdf860ac,
         type: 3}
@@ -60668,6 +60900,16 @@ PrefabInstance:
       objectReference: {fileID: 991935482}
     - target: {fileID: 3500483462670812283, guid: 93cea0a85aaaef245ac176a3f92c9a3e,
         type: 3}
+      propertyPath: oxygenTank
+      value: 
+      objectReference: {fileID: 1091982245}
+    - target: {fileID: 3500483462670812283, guid: 93cea0a85aaaef245ac176a3f92c9a3e,
+        type: 3}
+      propertyPath: nextKeycard
+      value: 
+      objectReference: {fileID: 1328948221}
+    - target: {fileID: 3500483462670812283, guid: 93cea0a85aaaef245ac176a3f92c9a3e,
+        type: 3}
       propertyPath: proximitySFX
       value: 
       objectReference: {fileID: 991935486}
@@ -60802,6 +61044,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DarkBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 33168578900850921, guid: d564d35705ff8c14cb8994ee4c2b79e5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 810091618859655763, guid: d564d35705ff8c14cb8994ee4c2b79e5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -60925,6 +61172,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Brown
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805187519097681048, guid: d4b241920310fdc48bf0e31334f38f29,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -61056,6 +61308,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3926387385632022958, guid: b435ceebc9f0b2d42b7c2dbf842761b5,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3926387385632022958, guid: b435ceebc9f0b2d42b7c2dbf842761b5,
+        type: 3}
       propertyPath: m_TagString
       value: AirBladder
       objectReference: {fileID: 0}
@@ -61136,6 +61393,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Gray
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735399479449816440, guid: c240761ff713b3941afd2f50bc949869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -61253,6 +61515,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Green
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042656575860132418, guid: 7ecf03b1ce144f24cb369165289cede0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9152610709393092596, guid: 7ecf03b1ce144f24cb369165289cede0,
         type: 3}
@@ -61420,6 +61687,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OxygenTank
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837535381714947957, guid: 843446bac572909479fa3328bf58187c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8949605352020106546, guid: 843446bac572909479fa3328bf58187c,
         type: 3}

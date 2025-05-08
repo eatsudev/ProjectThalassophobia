@@ -16,6 +16,10 @@ public class Chest : MonoBehaviour
     private bool isPlayingAudio = false;
     public Transform player;
 
+    public GameObject nextKeycard;
+    public GameObject oxygenTank;
+    //public GameObject clueItem;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -84,6 +88,9 @@ public class Chest : MonoBehaviour
         bubbles.Play();
         bubbleSFX.Play();
         chestCollider.enabled = false;
+        nextKeycard.SetActive(true);
+        oxygenTank.SetActive(true);
+        //clueItem.SetActive(true);
 
         if (proximitySFX.isPlaying)
         {

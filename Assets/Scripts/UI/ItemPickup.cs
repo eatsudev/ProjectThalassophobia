@@ -18,6 +18,7 @@ public class ItemPickup : MonoBehaviour
 
     public List<Keycard> keycards = new List<Keycard>();
     public AudioSource pickupSFX;
+    public Text heldItemText;
 
     private void Start()
     {
@@ -34,6 +35,7 @@ public class ItemPickup : MonoBehaviour
         }
 
         SwitchItems();
+
     }
 
     void ShowItemNameUI()
@@ -90,6 +92,7 @@ public class ItemPickup : MonoBehaviour
                 }
                 pickupSFX.Play();
                 FindObjectOfType<InventoryUI>().UpdateInventoryUI();
+                UpdateHeldItemUI();
             }
         }
     }
@@ -165,6 +168,7 @@ public class ItemPickup : MonoBehaviour
 
         currentItemIndex = index;
         inventory[currentItemIndex].gameObject.SetActive(true);
+        UpdateHeldItemUI();
     }
 
     public void EquipNextAvailableItem()
@@ -234,6 +238,19 @@ public class ItemPickup : MonoBehaviour
             }
 
             EquipNextAvailableItem();
+            UpdateHeldItemUI();
+        }
+    }
+
+    void UpdateHeldItemUI()
+    {
+        if (currentItemIndex >= 0 && currentItemIndex < inventory.Count && inventory[currentItemIndex] != null)
+        {
+            heldItemText.text = "Currently Holding: " + inventory[currentItemIndex].itemName;
+        }
+        else
+        {
+            heldItemText.text = "Currently Holding: -";
         }
     }
 }
