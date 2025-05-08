@@ -19,6 +19,11 @@ public class ItemPickup : MonoBehaviour
     public List<Keycard> keycards = new List<Keycard>();
     public AudioSource pickupSFX;
 
+    private void Start()
+    {
+        AutoPickupRedKeycard();
+    }
+
     void Update()
     {
         ShowItemNameUI();
@@ -86,6 +91,38 @@ public class ItemPickup : MonoBehaviour
                 pickupSFX.Play();
                 FindObjectOfType<InventoryUI>().UpdateInventoryUI();
             }
+        }
+    }
+
+    void AutoPickupRedKeycard()
+    {
+        GameObject redkeycardObj = GameObject.Find("Red");
+        if(redkeycardObj != null)
+        {
+            Item item = redkeycardObj.GetComponent<Item>();
+            if (item != null)
+            {
+                Item newItem = Instantiate(item, itemHolder);
+                newItem.transform.position = itemHolder.position;
+                newItem.transform.rotation = itemHolder.rotation;
+                newItem.transform.localScale = Vector3.one * itemSize;
+                newItem.gameObject.SetActive(false);
+
+                if(inventory.Count < maxItems)
+                {
+                    inventory.Add(newItem);
+                    currentItemIndex = inventory.Count - 1;
+                    EquipItem(currentItemIndex);
+                }
+
+                Destroy(redkeycardObj);
+                Debug.Log("red keycard obtained");
+                FindObjectOfType<InventoryUI>().UpdateInventoryUI();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("red keycard not found");
         }
     }
 
