@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -8,9 +9,11 @@ public class PlayerInteraction : MonoBehaviour
     public float interactRange = 2f;
     public LayerMask interactableLayer;
     public ItemPickup itemPickup;
+    public Text interactNameUI;
 
     void Update()
     {
+        ShowInteractNameUI();
         if (Input.GetKeyDown(KeyCode.E)) 
         {
             TryInteract();
@@ -34,14 +37,34 @@ public class PlayerInteraction : MonoBehaviour
             {
                 chest.TryOpen(itemPickup.GetHeldItem());
             }
-            else
+
+            ClueItem clueItem = hit.collider.GetComponent<ClueItem>();
+            if (clueItem != null)
             {
-                Debug.Log("This is not a chest.");
+                clueItem.Interact();
             }
+
+            Debug.Log("This is not a chest/clue item");
         }
         else
         {
             Debug.Log("Raycast did not hit anything.");
         }
+    }
+
+    void ShowInteractNameUI()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, interactableLayer))
+        {
+            Interactable interactable = hit.collider.GetComponent<Interactable>();
+            if (interactable != null)
+            {
+                interactNameUI.text = interactable.interactName + " (E)";
+                interactNameUI.enabled = true;
+                return;
+            }
+        }
+        interactNameUI.enabled = false;
     }
 }

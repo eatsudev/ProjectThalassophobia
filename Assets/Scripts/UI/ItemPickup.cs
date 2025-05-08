@@ -46,7 +46,7 @@ public class ItemPickup : MonoBehaviour
             Item item = hit.collider.GetComponent<Item>();
             if (item != null)
             {
-                itemNameUI.text = item.itemName;
+                itemNameUI.text = item.itemName + " (E)";
                 itemNameUI.enabled = true;
                 return;
             }
