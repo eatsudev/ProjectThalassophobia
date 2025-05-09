@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
-    public GameObject readablePanel;
     public Text readableText;
-    public Image imageTemplate;
     public PlayerController playerController;
+    public Image imageTemplate;
+    public GameObject closeButton;
 
     private void Start()
     {
@@ -24,9 +24,8 @@ public class UIManager : MonoBehaviour
 
     public void ShowReadableUI(string content, Sprite clueSprite)
     {
-        readablePanel.SetActive(true);
         readableText.text = content;
-        //Time.timeScale = 0f;
+        closeButton.SetActive(true);
 
         if (clueSprite != null)
         {
@@ -38,8 +37,8 @@ public class UIManager : MonoBehaviour
             imageTemplate.enabled = false;
             imageTemplate.sprite = null;
         }
-        Cursor.lockState = CursorLockMode.None;
 
+        Cursor.lockState = CursorLockMode.None;
         if (playerController != null)
         {
             playerController.canLook = false;
@@ -48,15 +47,13 @@ public class UIManager : MonoBehaviour
 
     public void CloseReadableUI()
     {
-        readablePanel.SetActive(false);
         readableText.text = null;
-        //Time.timeScale = 1f;
+        closeButton.SetActive(false);
 
         imageTemplate.enabled = false;
         imageTemplate.sprite = null;
 
         Cursor.lockState = CursorLockMode.Locked;
-
         if (playerController != null)
         {
             playerController.canLook = true;
